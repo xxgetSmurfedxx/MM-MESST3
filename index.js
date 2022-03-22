@@ -103,7 +103,7 @@ client.on('ready', () => {
 			client.channels.cache.get(isChan.id).send("Nothing to track.")
 		}
 		else{
-			startBot(track,sym,isGuild,isChan)
+			//startBot(track,sym,isGuild,isChan)
 		}
 	})
 });
@@ -124,5 +124,12 @@ client.on('messageCreate', msg => {
 				client.channels.cache.get(isChan.id).send('Tracking ' + data[1] + ' of ' + data[2])
 			})
 		}
+	}
+	if (msg.content === "!testing"){
+		fs.readFile('cache.json',(err,data) => {
+			if (err) throw err
+			deets = JSON.parse(data)
+			msg.reply(deets)
+		})
 	}
 });
