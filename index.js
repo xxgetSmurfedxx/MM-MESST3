@@ -20,12 +20,17 @@ client.on('ready', () => {
 client.on('messageCreate', msg => {
 	if (msg.content === "!testing"){
 		msg.reply("Reading...")
-		fs.readFile('cache.json',(err,data) => {
-			if (err) {
-				msg.reply(err)
-			}
-			deets = JSON.parse(data)
-			msg.reply(deets)
-		})
+		try {
+			fs.readFile('cache.json',(err,data) => {
+				if (err) {
+					msg.reply(err)
+				}
+				deets = JSON.parse(data)
+				msg.reply(deets)
+			})
+		}
+		catch (error) {
+			msg.reply(error)
+		}
 	}
 });
